@@ -9,13 +9,15 @@ const Update = () => {
     price: null,
     cover: "",
   });
-  const [error,setError] = useState(false)
+  const [error,setError] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
 
+  // get the relevant book id from the path in the url
   const bookId = location.pathname.split("/")[2];
 
+  // store the new values for the update action
   const handleChange = (e) => {
     setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -24,6 +26,7 @@ const Update = () => {
     e.preventDefault();
 
     try {
+      // send req with book id to update the book with this id with new information
       await axios.put(`http://localhost:8800/books/${bookId}`, book);
       navigate("/");
     } catch (err) {
@@ -62,6 +65,7 @@ const Update = () => {
       />
       <button onClick={handleClick}>Update</button>
       {error && "Something went wrong!"}
+    
       <Link to="/">See all books</Link>
     </div>
   );

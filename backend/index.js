@@ -6,6 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// initiate db connection locally
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -13,14 +14,19 @@ const db = mysql.createConnection({
   database: "test",
 });
 
+// ensure db connection
 if(db){
   console.log("DB COnnected");
 }
+
 
 app.get("/", (req, res) => {
   res.json("hello");
 });
 
+
+
+// retrieve the book data from the mysql database
 app.get("/books", (req, res) => {
   const q = "SELECT * FROM books;";
   db.query(q, (err, data) => {
@@ -29,12 +35,13 @@ app.get("/books", (req, res) => {
       return res.json(err);
     }
     console.log(data);
-    console.log("in get method");
     return res.json(data);
     
   });
 });
 
+
+// get the book data from front end and insert it into the table
 app.post("/books", (req, res) => {
   const q = "INSERT INTO books(`title`, `desc`, `price`, `cover`) VALUES (?);";
 
@@ -51,6 +58,7 @@ app.post("/books", (req, res) => {
   });
 });
 
+// for deleting use the book id from the front end and delete the entry in the db
 app.delete("/books/:id", (req, res) => {
   const bookId = req.params.id;
   const q = " DELETE FROM books WHERE id = ? ;";
@@ -61,10 +69,11 @@ app.delete("/books/:id", (req, res) => {
   });
 });
 
+// for updating an existing row in the db using the book id
 app.put("/books/:id", (req, res) => {
   const bookId = req.params.id;
   const q = "UPDATE books SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE `id` = ?;";
-
+// new values form the req(frontend)
   const values = [
     req.body.title,
     req.body.desc,

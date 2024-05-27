@@ -13,7 +13,7 @@ const Add = () => {
   const [error,setError] = useState(false)
 
   const navigate = useNavigate();
-
+// store the values for the adding new book
   const handleChange = (e) => {
     setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -21,6 +21,7 @@ const Add = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
+      // send the data to the server to create new book
       await axios.post("http://localhost:8800/books", book);
       navigate("/");
     } catch (err) {

@@ -8,6 +8,8 @@ const Books = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
+
+    // get all books from db and store in books
     const fetchAllBooks = async () => {
       try {
         const res = await axios.get("http://localhost:8800/books");
@@ -24,6 +26,7 @@ const Books = () => {
 
   const handleDelete = async (id) => {
     try {
+      // send req to the server with id, for deleting the book in the db
       await axios.delete(`http://localhost:8800/books/${id}`);
       window.location.reload()
     } catch (err) {
