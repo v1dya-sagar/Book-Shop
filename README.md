@@ -4,10 +4,9 @@ A simple book shop application built using React.js for the front-end and MySQL 
 
 ## Features
 
-- Browse and search for books
 - View book details
 - Add books 
-- View price
+- View price, description, cover and name
 - Update and delete books.
 
 
