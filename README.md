@@ -1,6 +1,6 @@
 # Simple Book Shop
 
-A simple book shop application built using React.js for the front-end and MySQL for the back-end. This project allows the user to browse, search, and update books.
+A simple book shop application built using React.js for the front-end and MySQL for the back-end. This project allows the user to browse, delete, add and update books.
 
 ## Features
 
