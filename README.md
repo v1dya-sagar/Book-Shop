@@ -15,7 +15,7 @@ A simple book shop application built using React.js for the front-end and MySQL 
 - **Front-end**: React.js, Axios
 - **Back-end**: Node.js, Express.js
 - **Database**: MySQL
-- **Other Tools**: Sequelize (ORM for MySQL), Bootstrap (for styling)
+
 
 
 ### Prerequisites
